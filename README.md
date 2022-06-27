@@ -1,3 +1,3 @@
 # pong
 
-College homework
+College homework.
