@@ -1,21 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bola : MonoBehaviour
 {
     public float Velocity = 30.0f;
+
+    //Contadores de goles
+    public int golesIzquierda = 0;
+    public int golesDerecha = 0;
+    //Cajas de texto de los contadores
+    public Text contadorIzquierda;
+    public Text contadorDerecha;
+
+    // Audios
+    AudioSource fuenteDeAudio;
+
+    // Clips
+    public AudioClip audioGol, audioRaqueta, audioRebote;
+
     // Start is called before the first frame update
     void Start()
     {
         //Velocidad inicial hacia la dercha
         GetComponent<Rigidbody2D>().velocity = Vector2.right * Velocity;
+
+        // Recuperar el componente audio source;
+        fuenteDeAudio = GetComponent<AudioSource>();
+
+        // Poner contadores en 0
+        contadorDerecha.text = golesIzquierda.ToString();
+        contadorIzquierda.text = golesDerecha.ToString();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Velocity = Velocity + 0.1f;
     }
     int direccionY(Vector2 posicionBola, Vector2 posicionRaqueta)
     {
@@ -50,6 +73,10 @@ public class Bola : MonoBehaviour
 
             // Aplico velocidad a la bola
             GetComponent<Rigidbody2D>().velocity = direccion * Velocity;
+
+            // Reproducir audio
+            fuenteDeAudio.clip = audioRaqueta;
+            fuenteDeAudio.Play();
         }
 
         //Si choca con la raqueta derecha
@@ -66,6 +93,57 @@ public class Bola : MonoBehaviour
 
             // Aplico velocidad a la bola
             GetComponent<Rigidbody2D>().velocity = direccion * Velocity;
+
+            // Reproducir audio
+            fuenteDeAudio.clip = audioRaqueta;
+            fuenteDeAudio.Play();
         }
+
+        // Para el sonido de rebote
+        if (miColission.gameObject.name == "Arriba" || miColission.gameObject.name == "Abajo")
+        {
+            // Reproducir audio del rebote
+            fuenteDeAudio.clip = audioRebote;
+            fuenteDeAudio.Play();
+        }
+    }
+
+    // Reiniciar la bola
+    public void reiniciarBola(string direccion)
+    {
+        // posicion 0 de la bola
+        transform.position = Vector2.zero;
+        //Vector2.zero es lo mismo que new Vector2(0,0);
+
+        // velocidad inicial de la bola 
+        Velocity = 30;
+
+        // velocidad y direccion
+        if (direccion == "Derecha")
+        {
+            // incrementar goles a la de la derecha
+            golesDerecha++;
+            // marcarlo en el marcador
+            contadorDerecha.text = golesDerecha.ToString();
+
+            // reinicio la bola
+            GetComponent<Rigidbody2D>().velocity = Vector2.right * Velocity;
+            //Vector2.right es lo mismo que new Vector2(1,0)
+        }
+        else if (direccion == "Izquierda")
+        {
+            // incrementar goles a la de la izquierda
+            golesIzquierda++;
+
+            // marcarlo en el marcador
+            contadorIzquierda.text = golesIzquierda.ToString();
+
+            // reinicio la bola
+            GetComponent<Rigidbody2D>().velocity = Vector2.left * Velocity;
+
+            //Vector2.left es lo mismo que new Vector2(-1,0)
+        }
+        fuenteDeAudio.clip = audioGol;
+        fuenteDeAudio.Play();
     }
 }
