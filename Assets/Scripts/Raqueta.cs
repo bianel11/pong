@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class Raqueta : MonoBehaviour
 {
-  public float Velocity = 30.0f;
+    public float Velocity = 30.0f;
 
-  public string eje;
+    public string eje;
 
-  // Start is called before the first frame update
-  void Start()
-  {
+    // Start is called before the first frame update
+    void Start()
+    {
 
-  }
+    }
 
-  // Update is called once per frame
-  void Update()
-  {
+    // Update is called once per frame
+    void Update()
+    {
 
-  }
+    }
 
-  // fixedUpdate es llamado antes de cada frame
-  void FixedUpdate()
-  {
-    // vertical posicion de la raqueta
-    float v = Input.GetAxisRaw(eje);
-    // Modifico la velocidad de la raqueta
-    GetComponent<Rigidbody2D>().velocity = new Vector2(0, v * Velocity);
-  }
+    // fixedUpdate es llamado antes de cada frame
+    void FixedUpdate()
+    {
+        // vertical posicion de la raqueta
+        float v = Input.GetAxisRaw(eje);
+        // Modifico la velocidad de la raqueta
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, v * Velocity);
+    }
 }
