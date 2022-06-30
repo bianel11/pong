@@ -2000,7 +2000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 30
-  eje: Vertical 2
+  ejeV: Vertical 2
+  ejeH: Horizontal 2
 --- !u!1 &1305400755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,7 +2793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 30
-  eje: Vertical
+  ejeV: Vertical
+  ejeH: Horizontal
 --- !u!1 &2036851443
 GameObject:
   m_ObjectHideFlags: 0
