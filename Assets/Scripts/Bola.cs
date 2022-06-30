@@ -110,7 +110,6 @@ public class Bola : MonoBehaviour
         transform.position = Vector2.zero;
         //Vector2.zero es lo mismo que new Vector2(0,0);
 
-        // velocidad inicial de la bola 
         Velocity += 5f;
 
         // velocidad y direccion
