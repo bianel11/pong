@@ -35,12 +35,6 @@ public class Bola : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        // Bether change the velocity of the ball using fixed update instead of update.
-        // This is because the physics engine is not updated every frame.
-        Velocity = Velocity + 0.1f;
-    }
     int direccionY(Vector2 posicionBola, Vector2 posicionRaqueta)
     {
         if
@@ -117,7 +111,7 @@ public class Bola : MonoBehaviour
         //Vector2.zero es lo mismo que new Vector2(0,0);
 
         // velocidad inicial de la bola 
-        Velocity = 30;
+        Velocity += 5f;
 
         // velocidad y direccion
         if (direccion == "Derecha")
