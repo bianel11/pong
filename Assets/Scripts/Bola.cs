@@ -35,9 +35,10 @@ public class Bola : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        // Bether change the velocity of the ball using fixed update instead of update.
+        // This is because the physics engine is not updated every frame.
         Velocity = Velocity + 0.1f;
     }
     int direccionY(Vector2 posicionBola, Vector2 posicionRaqueta)
